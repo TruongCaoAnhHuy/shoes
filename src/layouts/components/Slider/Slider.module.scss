@@ -1,0 +1,50 @@
+.wrapper {
+    user-select: none;
+}
+
+.content {
+    text-align: left;
+}
+
+.item {
+    display: flex;
+}
+
+.title {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 5.85rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 60px;
+}
+
+.dark {
+    color: var(--text-color);
+
+    &:not(div) {
+        border: 2px solid var(--text-color);
+        background-color: var(--text-color);
+    }
+}
+
+.white {
+    color: var(--orange);
+
+    &:not(div) {
+        border: 2px solid var(--orange);
+        background-color: var(--orange);
+    }
+}
+
+.description {
+    font-size: 1.95rem;
+    line-height: 2.925rem;
+    margin-bottom: 60px;
+    color: #8d8d8d;
+}
+
+.img {
+    width: 700px;
+    height: 500px;
+    pointer-events: none;
+}
