@@ -1,5 +1,11 @@
+import Slider from '~/layouts/components/Slider/Slider';
+
 function Home() {
-    return <h2>Home Page</h2>;
+    return (
+        <div className="slider">
+            <Slider />
+        </div>
+    );
 }
 
 export default Home;

@@ -1,12 +1,19 @@
-import Header from "~/layouts/component/Header";
-import Footer from "~/layouts/component/Footer";
+import classNames from "classnames/bind";
+
+import Header from "~/layouts/components/Header";
+import Footer from "~/layouts/components/Footer";
+import styles from './MainLayout.module.scss'
+
+const cx = classNames.bind(styles)
 
 function MainLayout({ children }) {
     return (
         <div>
             <Header />
-            <div className="content">
-                {children}
+            <div className={cx('wrapper')}>
+                <div className={`${cx('container')} container`}>
+                    {children}
+                </div>
             </div>
             <Footer />
         </div>
