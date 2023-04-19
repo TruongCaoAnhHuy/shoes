@@ -57,6 +57,7 @@ function Header() {
                             <Button className={cx('cart')} to="/cart">
                                 <CartIcon />
                             </Button>
+                            <span className={cx('quality')}>0</span>
                             <TippyHeadless
                                 interactive
                                 hideOnClick={false}
