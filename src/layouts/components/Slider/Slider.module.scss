@@ -1,5 +1,6 @@
 .wrapper {
     user-select: none;
+    margin-bottom: 50px;
 }
 
 .content {
@@ -22,6 +23,7 @@
     color: var(--text-color);
 
     &:not(div) {
+        color: var(--white);
         border: 2px solid var(--text-color);
         background-color: var(--text-color);
     }
@@ -31,6 +33,7 @@
     color: var(--orange);
 
     &:not(div) {
+        color: var(--white);
         border: 2px solid var(--orange);
         background-color: var(--orange);
     }

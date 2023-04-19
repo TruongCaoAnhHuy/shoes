@@ -68,3 +68,44 @@
 }
 
 .action {}
+
+.search,
+.cart,
+.user {
+    border: none;
+    color: var(--text-color);
+    margin-left: 0 !important;
+
+    &:hover {
+        color: var(--primary);
+    }
+}
+
+.user {
+    padding: 8px 18px;
+}
+
+.user_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 150px;
+    width: 350px;
+}
+
+.user_content {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+
+    img {
+        width: 60px;
+    }
+}
+
+.user_info {}
+
+.user-name {}
+
+.user-date {}

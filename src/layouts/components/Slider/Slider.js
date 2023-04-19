@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 
 import styles from './Slider.module.scss';
 import Button from '~/components/Button/Button';
-import { slideItems } from '~/assets/fakedata/SliderAPI';
+import { slideItems } from '~/assets/fakedata/sliderAPI';
 
 const cx = classNames.bind(styles);
 
