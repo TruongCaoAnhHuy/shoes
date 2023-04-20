@@ -11,6 +11,8 @@ function Button({
     className,
     primary = false,
     large = false,
+    small = false,
+    social = false,
     leftIcon,
     rightIcon,
     onClick,
@@ -20,7 +22,9 @@ function Button({
     const classes = cx('wrapper', {
         [className]: className,
         primary,
+        small,
         large,
+        social,
     });
     const props = {
         onClick,

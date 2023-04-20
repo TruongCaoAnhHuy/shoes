@@ -29,8 +29,17 @@
     font-size: 1.95rem;
 
     +.nav-item {
-        margin-left: 39px;
+        margin-left: 29px;
     }
+
+    a {
+        padding: 10px 10px;
+
+        &:first-child {
+            padding: 10px 10px 10px 0;
+        }
+    }
+
 
     &:hover a {
         color: var(--primary);
@@ -39,11 +48,8 @@
 }
 
 .active {
-
-    a {
-        color: var(--primary);
-        font-weight: 600;
-    }
+    color: var(--primary);
+    font-weight: 600;
 }
 
 .logo {

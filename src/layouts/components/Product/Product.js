@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './Product.module.scss';
 import Button from '~/components/Button/Button';
 import { Link } from 'react-router-dom';
-import { product, productPopulars } from '~/assets/fakedata/product';
+import { productTrends, productNews, productPopulars } from '~/assets/fakedata/product';
 import Banner from '../Banner/Banner';
 
 const cx = classNames.bind(styles);
@@ -15,16 +15,16 @@ function Product() {
             </div>
             <div className={cx('product')}>
                 <div className="row">
-                    {productPopulars.map((product) => (
-                        <div className="col l-3" key={product.id}>
+                    {productTrends.map((productTrend) => (
+                        <div className="col l-3" key={productTrend.id}>
                             <div className={cx('product_item')}>
-                                <Link to={`catalog/@${product.pPath}`} className={cx('product_info')}>
+                                <Link to={`catalog/@${productTrend.pPath}`} className={cx('product_info')}>
                                     <div className={cx('product_img')}>
-                                        <img src={product.image} alt="product" />
+                                        <img src={productTrend.image} alt="product" />
                                     </div>
-                                    <p className={cx('description')}>{product.desc}</p>
+                                    <p className={cx('description')}>{productTrend.desc}</p>
                                     <h4 className={cx('price')}>
-                                        {product.price.slice(0, 3) + ',' + product.price.slice(3)}
+                                        {productTrend.price.slice(0, 3) + ',' + productTrend.price.slice(3)}
                                     </h4>
                                 </Link>
                                 <div className={cx('product_btn')}>
@@ -40,16 +40,16 @@ function Product() {
             </div>
             <div className={cx('product')}>
                 <div className="row">
-                    {product.map((product) => (
-                        <div className="col l-3" key={product.id}>
+                    {productNews.map((productNew) => (
+                        <div className="col l-3" key={productNew.id}>
                             <div className={cx('product_item')}>
-                                <Link to={`catalog/@${product.pPath}`} className={cx('product_info')}>
+                                <Link to={`catalog/@${productNew.pPath}`} className={cx('product_info')}>
                                     <div className={cx('product_img')}>
-                                        <img src={product.image} alt="product" />
+                                        <img src={productNew.image} alt="product" />
                                     </div>
-                                    <p className={cx('description')}>{product.desc}</p>
+                                    <p className={cx('description')}>{productNew.desc}</p>
                                     <h4 className={cx('price')}>
-                                        {product.price.slice(0, 3) + ',' + product.price.slice(3)}
+                                        {productNew.price.slice(0, 3) + ',' + productNew.price.slice(3)}
                                     </h4>
                                 </Link>
                                 <div className={cx('product_btn')}>
@@ -66,16 +66,16 @@ function Product() {
             </div>
             <div className={cx('product')}>
                 <div className="row">
-                    {product.map((product) => (
-                        <div className="col l-3" key={product.id}>
+                    {productPopulars.map((productPopular) => (
+                        <div className="col l-3" key={productPopular.id}>
                             <div className={cx('product_item')}>
-                                <Link to={`catalog/@${product.pPath}`} className={cx('product_info')}>
+                                <Link to={`catalog/@${productPopular.pPath}`} className={cx('product_info')}>
                                     <div className={cx('product_img')}>
-                                        <img src={product.image} alt="product" />
+                                        <img src={productPopular.image} alt="product" />
                                     </div>
-                                    <p className={cx('description')}>{product.desc}</p>
+                                    <p className={cx('description')}>{productPopular.desc}</p>
                                     <h4 className={cx('price')}>
-                                        {product.price.slice(0, 3) + ',' + product.price.slice(3)}
+                                        {productPopular.price.slice(0, 3) + ',' + productPopular.price.slice(3)}
                                     </h4>
                                 </Link>
                                 <div className={cx('product_btn')}>

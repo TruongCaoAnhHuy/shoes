@@ -3,12 +3,19 @@ import Product from '~/layouts/components/Product/Product';
 import Slider from '~/layouts/components/Slider/Slider';
 
 function Home() {
+    const isActive = true;
     return (
-        <div className="slider">
-            <Slider />
-            <Policy />
-            <Product />
-        </div>
+        <>
+            <div className="slider">
+                <Slider />
+            </div>
+            <div className="policy">
+                <Policy />
+            </div>
+            <div className="product">
+                <Product />
+            </div>
+        </>
     );
 }
 
