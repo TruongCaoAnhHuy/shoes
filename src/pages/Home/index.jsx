@@ -3,7 +3,6 @@ import Product from '~/layouts/components/Product/Product';
 import Slider from '~/layouts/components/Slider/Slider';
 
 function Home() {
-    const isActive = true;
     return (
         <>
             <div className="slider">

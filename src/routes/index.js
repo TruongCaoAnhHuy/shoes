@@ -1,9 +1,9 @@
 import Home from '~/pages/Home';
 import Catalog from '~/pages/Catalog';
-import Login from '~/pages/Login';
-import Register from '~/pages/Register';
 import Cart from '~/pages/Cart';
 import Product from '~/pages/Product';
+import Login from '~/features/auth/pages/Login';
+import Register from '~/features/auth/pages/Register';
 
 const publicRoutes = [
     { path: '/', component: Home },

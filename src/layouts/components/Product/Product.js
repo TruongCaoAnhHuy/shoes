@@ -1,9 +1,10 @@
 import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
+
 import styles from './Product.module.scss';
 import Button from '~/components/Button/Button';
-import { Link } from 'react-router-dom';
-import { productTrends, productNews, productPopulars } from '~/assets/fakedata/product';
 import Banner from '../Banner/Banner';
+import { productTrends, productNews, productPopulars } from '~/assets/fakedata/product';
 
 const cx = classNames.bind(styles);
 

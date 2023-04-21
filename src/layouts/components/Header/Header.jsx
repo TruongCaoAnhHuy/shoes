@@ -1,23 +1,25 @@
 import classNames from 'classnames/bind';
-import { NavLink } from 'react-router-dom';
-
 import TippyHeadless from '@tippyjs/react/headless';
-// import Tippy from '@tippyjs/react';
-// import 'tippy.js/dist/tippy.css';
+import { NavLink } from 'react-router-dom';
+import { useContext, useEffect, useRef, useState } from 'react';
 
-import styles from './Header.module.scss';
+import { auth } from '~/firebase';
+
 import images from '~/assets/image';
 import Button from '~/components/Button';
-import { useEffect, useRef, useState } from 'react';
-import { CartIcon, LogOutIcon, SearchIcon, UserIcon } from '~/components/Icons/Icon';
+import styles from './Header.module.scss';
+import { UserContext } from '~/App';
 import { Popper as PopperWrapper } from '~/layouts/components/Popper';
+import { CartIcon, LogOutIcon, SearchIcon, UserIcon } from '~/components/Icons/Icon';
 
 const cx = classNames.bind(styles);
 
 function Header() {
-    const currentUser = false;
+    const context = useContext(UserContext);
+    const currentUser = context.currentUser;
 
     const [isShrink, setIsShrink] = useState(false);
+    const [cartQnt, setCartQnt] = useState(0);
 
     const menuRef = useRef(null);
     const mainNav = [
@@ -35,6 +37,10 @@ function Header() {
 
     const menuToggle = () => {
         menuRef.current.classList.toggle('active');
+    };
+
+    const logOut = () => {
+        auth.signOut();
     };
 
     useEffect(() => {
@@ -75,7 +81,7 @@ function Header() {
                             <Button className={cx('cart')} to="/cart">
                                 <CartIcon />
                             </Button>
-                            <span className={cx('quality')}>0</span>
+                            <span className={cx('quality')}>{cartQnt}</span>
                             <TippyHeadless
                                 interactive
                                 hideOnClick={false}
@@ -89,11 +95,11 @@ function Header() {
                                             <div className={cx('user_content')}>
                                                 <img src={images.user} alt="user" />
                                                 <div className={cx('user_info')}>
-                                                    <h3 className={cx('user-name')}>Anh Huy</h3>
-                                                    <p className={cx('user-date')}>25/7/2007</p>
+                                                    <h3 className={cx('user-name')}>{context.userName}</h3>
+                                                    {/* <p className={cx('user-date')}>25/7/2007</p> */}
                                                 </div>
                                             </div>
-                                            <Button primary leftIcon={<LogOutIcon />}>
+                                            <Button primary leftIcon={<LogOutIcon />} onClick={logOut}>
                                                 Log out
                                             </Button>
                                         </div>
