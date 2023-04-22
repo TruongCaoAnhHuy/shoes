@@ -49,8 +49,33 @@
     margin-bottom: 10px;
 }
 
+.price_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .price {
     font-size: 1.95rem;
     font-weight: 600;
     margin-bottom: 10px;
+}
+
+.price_sale {
+    position: relative;
+    margin-left: 20px;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: #8d8d8d;
+
+    &::after {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        content: "";
+        width: 65px;
+        height: 1px;
+        background-color: #8d8d8d;
+    }
 }

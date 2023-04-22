@@ -24,9 +24,14 @@ function Product() {
                                         <img src={productTrend.image} alt="product" />
                                     </div>
                                     <p className={cx('description')}>{productTrend.desc}</p>
-                                    <h4 className={cx('price')}>
-                                        {productTrend.price.slice(0, 3) + ',' + productTrend.price.slice(3)}
-                                    </h4>
+                                    <div className={cx('price_wrapper')}>
+                                        <h4 className={cx('price')}>
+                                            {productTrend.price.slice(0, 3) + ',' + productTrend.price.slice(3)}
+                                        </h4>
+                                        <h4 className={`${cx('price')} ${cx('price_sale')}`}>
+                                            {productTrend.sale.slice(0, 3) + ',' + productTrend.sale.slice(3)}
+                                        </h4>
+                                    </div>
                                 </Link>
                                 <div className={cx('product_btn')}>
                                     <Button primary>Chọn mua</Button>
@@ -49,9 +54,14 @@ function Product() {
                                         <img src={productNew.image} alt="product" />
                                     </div>
                                     <p className={cx('description')}>{productNew.desc}</p>
-                                    <h4 className={cx('price')}>
-                                        {productNew.price.slice(0, 3) + ',' + productNew.price.slice(3)}
-                                    </h4>
+                                    <div className={cx('price_wrapper')}>
+                                        <h4 className={cx('price')}>
+                                            {productNew.price.slice(0, 3) + ',' + productNew.price.slice(3)}
+                                        </h4>
+                                        <h4 className={`${cx('price')} ${cx('price_sale')}`}>
+                                            {productNew.sale.slice(0, 3) + ',' + productNew.sale.slice(3)}
+                                        </h4>
+                                    </div>
                                 </Link>
                                 <div className={cx('product_btn')}>
                                     <Button primary>Chọn mua</Button>
@@ -75,9 +85,14 @@ function Product() {
                                         <img src={productPopular.image} alt="product" />
                                     </div>
                                     <p className={cx('description')}>{productPopular.desc}</p>
-                                    <h4 className={cx('price')}>
-                                        {productPopular.price.slice(0, 3) + ',' + productPopular.price.slice(3)}
-                                    </h4>
+                                    <div className={cx('price_wrapper')}>
+                                        <h4 className={cx('price')}>
+                                            {productPopular.price.slice(0, 3) + ',' + productPopular.price.slice(3)}
+                                        </h4>
+                                        <h4 className={`${cx('price')} ${cx('price_sale')}`}>
+                                            {productPopular.sale.slice(0, 3) + ',' + productPopular.sale.slice(3)}
+                                        </h4>
+                                    </div>
                                 </Link>
                                 <div className={cx('product_btn')}>
                                     <Button primary>Chọn mua</Button>

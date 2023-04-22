@@ -10,6 +10,7 @@ import styles from './auth.module.scss';
 import Button from '~/components/Button/Button';
 import { Popper as PopperWrapper } from '~/layouts/components/Popper';
 import { BackBtnIcon, FaceBookIcon, GoogleIcon } from '~/components/Icons/Icon';
+import usePasswordToggle from '~/hooks/usePasswordToggle';
 
 const cx = classNames.bind(styles);
 
@@ -19,18 +20,101 @@ function Register() {
         name: '',
         email: '',
         password: '',
+        cPass: '',
+        phone: '',
     });
 
     const [errorMsg, setErrorMsg] = useState('');
+    const [errorAll, setErrorAll] = useState(false);
+    const [errorName, setErrorName] = useState(false);
+    const [errorEmail, setErrorEmail] = useState(false);
+    const [errorPass, setErrorPass] = useState(false);
+    const [errorCpass, setErrorCpass] = useState(false);
+    const [errorPhone, setErrorPhone] = useState(false);
+
+    var regexName = /^(?=.*[a-zA-Z])(?=.*\d).+$/;
+    var regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var regexPass = /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*\d).{8,}$/;
 
     const handleRegisterSubmit = (e) => {
         e.preventDefault();
 
-        if (!values.name || !values.email || !values.password) {
+        if (!values.name || !values.email || !values.password || !values.cPass || !values.phone) {
             setErrorMsg('Fill all fields!!');
             return;
         }
 
+        if (values.name.length < 8) {
+            setErrorMsg('UserName must >= 8 characters');
+            setErrorAll(false);
+            setErrorName(true);
+            setErrorEmail(false);
+            setErrorPass(false);
+            setErrorCpass(false);
+            return;
+        } else if (!regexName.test(values.name)) {
+            setErrorMsg('UserName must contain letters and numbers');
+            setErrorAll(false);
+            setErrorName(true);
+            setErrorEmail(false);
+            setErrorPass(false);
+            setErrorCpass(false);
+            setErrorPhone(false);
+            return;
+        }
+
+        if (!regexEmail.test(values.email)) {
+            setErrorMsg('Incorrect email');
+            setErrorAll(false);
+            setErrorName(false);
+            setErrorEmail(true);
+            setErrorPass(false);
+            setErrorCpass(false);
+            setErrorPhone(false);
+            return;
+        }
+
+        if (!regexPass.test(values.password)) {
+            setErrorMsg(
+                'Password must be more than 8 characters and contain at least one letter, one number and a special character',
+            );
+            setErrorAll(false);
+            setErrorName(false);
+            setErrorEmail(false);
+            setErrorPass(true);
+            setErrorCpass(false);
+            setErrorPhone(false);
+            return;
+        }
+
+        if (values.cPass !== values.password) {
+            setErrorMsg('Incorrect password');
+            setErrorAll(false);
+            setErrorName(false);
+            setErrorEmail(false);
+            setErrorPass(false);
+            setErrorCpass(true);
+            setErrorPhone(false);
+            return;
+        }
+
+        if (isNaN(values.phone)) {
+            setErrorMsg('PhoneNumber must be numbers');
+            setErrorAll(false);
+            setErrorName(false);
+            setErrorEmail(false);
+            setErrorPass(false);
+            setErrorCpass(false);
+            setErrorPhone(true);
+            return;
+        }
+
+        setErrorAll(false);
+        setErrorName(false);
+        setErrorEmail(false);
+        setErrorPass(false);
+        setErrorCpass(false);
+        setErrorPhone(false);
         setErrorMsg('');
 
         createUserWithEmailAndPassword(auth, values.email, values.password)
@@ -48,6 +132,8 @@ function Register() {
                 setErrorMsg('User name is already!!');
             });
     };
+
+    const [PasswordInputType, ToggleIcon] = usePasswordToggle();
 
     return (
         <div className={cx('wrapper')}>
@@ -74,7 +160,12 @@ function Register() {
                 </div>
                 <form className="info_form" onSubmit={(e) => handleRegisterSubmit(e)}>
                     <div className={cx('name')}>
-                        <label htmlFor="name_id">User Name</label>
+                        <label
+                            className={`${errorName ? 'error_color' : ''} ${errorAll ? 'error_color' : ''}`}
+                            htmlFor="name_id"
+                        >
+                            User Name
+                        </label>
                         <input
                             id="name_id"
                             placeholder="Enter your name"
@@ -83,9 +174,13 @@ function Register() {
                     </div>
 
                     <div className={cx('email')}>
-                        <label htmlFor="email_id">Email Address</label>
+                        <label
+                            className={`${errorEmail ? 'error_color' : ''} ${errorAll ? 'error_color' : ''}`}
+                            htmlFor="email_id"
+                        >
+                            Email Address
+                        </label>
                         <input
-                            type="email"
                             id="email_id"
                             placeholder="Enter your email"
                             onChange={(e) => setValues((prev) => ({ ...prev, email: e.target.value }))}
@@ -93,23 +188,48 @@ function Register() {
                     </div>
 
                     <div className={cx('password')}>
-                        <label htmlFor="password_id">Password</label>
+                        <label
+                            className={`${errorPass ? 'error_color' : ''} ${errorAll ? 'error_color' : ''}`}
+                            htmlFor="password_id"
+                        >
+                            Password
+                        </label>
                         <input
-                            type="password"
+                            type={PasswordInputType}
                             id="password_id"
                             placeholder="Enter your password"
                             onChange={(e) => setValues((prev) => ({ ...prev, password: e.target.value }))}
                         />
+                        <span className={cx('toggle_pass')}>{ToggleIcon}</span>
                     </div>
 
                     <div className={cx('c_password')}>
-                        <label htmlFor="c_password_id">Confirm Password</label>
-                        <input id="c_password_id" placeholder="Confirm your password" />
+                        <label
+                            className={`${errorCpass ? 'error_color' : ''} ${errorAll ? 'error_color' : ''}`}
+                            htmlFor="c_password_id"
+                        >
+                            Confirm Password
+                        </label>
+                        <input
+                            type="password"
+                            id="c_password_id"
+                            placeholder="Confirm your password"
+                            onChange={(e) => setValues((prev) => ({ ...prev, cPass: e.target.value }))}
+                        />
                     </div>
 
                     <div className={cx('phone')}>
-                        <label htmlFor="phone_id">Phone Number</label>
-                        <input id="phone_id" placeholder="Enter your phone numbers" />
+                        <label
+                            className={`${errorPhone ? 'error_color' : ''} ${errorAll ? 'error_color' : ''}`}
+                            htmlFor="phone_id"
+                        >
+                            Phone Number
+                        </label>
+                        <input
+                            id="phone_id"
+                            placeholder="Enter your phone numbers"
+                            onChange={(e) => setValues((prev) => ({ ...prev, phone: e.target.value }))}
+                        />
                     </div>
 
                     <div className={cx('btn_wrapper')}>

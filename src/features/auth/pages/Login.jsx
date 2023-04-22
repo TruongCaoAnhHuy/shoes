@@ -10,6 +10,7 @@ import styles from './auth.module.scss';
 import Button from '~/components/Button/Button';
 import { Popper as PopperWrapper } from '~/layouts/components/Popper';
 import { BackBtnIcon, FaceBookIcon, GoogleIcon } from '~/components/Icons/Icon';
+import usePasswordToggle from '~/hooks/usePasswordToggle';
 
 const cx = classNames.bind(styles);
 
@@ -39,6 +40,8 @@ function Login() {
                 console.log(err);
             });
     };
+
+    const [PasswordInputType, ToggleIcon] = usePasswordToggle();
 
     return (
         <div className={cx('wrapper')}>
@@ -77,11 +80,12 @@ function Login() {
                     <div className={cx('password')}>
                         <label htmlFor="password_id">Password</label>
                         <input
-                            type="password"
+                            type={PasswordInputType}
                             id="password_id"
                             placeholder="Enter your password"
                             onChange={(e) => setValues((prev) => ({ ...prev, password: e.target.value }))}
                         />
+                        <span className={cx('toggle_pass')}>{ToggleIcon}</span>
                     </div>
 
                     <div className={cx('btn_wrapper')}>

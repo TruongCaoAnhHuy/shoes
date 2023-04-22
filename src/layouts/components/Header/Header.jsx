@@ -75,7 +75,7 @@ function Header() {
                 <div className={cx('action')}>
                     {currentUser ? (
                         <>
-                            <Button className={cx('search')} to="/search">
+                            <Button className={cx('search')}>
                                 <SearchIcon />
                             </Button>
                             <Button className={cx('cart')} to="/cart">
@@ -85,7 +85,7 @@ function Header() {
                             <TippyHeadless
                                 interactive
                                 hideOnClick={false}
-                                delay={[0, 1500]}
+                                delay={[0, 1000]}
                                 placement="bottom-start"
                                 zIndex={99999}
                                 appendTo={document.body}
@@ -95,8 +95,26 @@ function Header() {
                                             <div className={cx('user_content')}>
                                                 <img src={images.user} alt="user" />
                                                 <div className={cx('user_info')}>
-                                                    <h3 className={cx('user-name')}>{context.userName}</h3>
-                                                    {/* <p className={cx('user-date')}>25/7/2007</p> */}
+                                                    <div className={cx('username')}>
+                                                        <p className={cx('username_label')}>User: </p>
+                                                        <h3
+                                                            className={`${cx('username_value')} ${cx(
+                                                                'username_value_name',
+                                                            )}`}
+                                                        >
+                                                            {context.userName}
+                                                        </h3>
+                                                    </div>
+                                                    <div className={cx('username')}>
+                                                        <p className={cx('username_label')}>Created: </p>
+                                                        <h3
+                                                            className={`${cx('username_value')} ${cx(
+                                                                'username_value_date',
+                                                            )}`}
+                                                        >
+                                                            {context.userDate}
+                                                        </h3>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <Button primary leftIcon={<LogOutIcon />} onClick={logOut}>

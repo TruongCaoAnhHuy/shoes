@@ -9,10 +9,15 @@ const UserContext = createContext();
 
 function App() {
     const [userName, setUserName] = useState('');
+    const [userDate, setUserDate] = useState('');
+    const [userPhone, setUserPhone] = useState('');
+
     const [currentUser, setCurrentUser] = useState(false);
 
     const values = {
         userName,
+        userDate,
+        userPhone,
         currentUser,
     };
 
@@ -21,9 +26,11 @@ function App() {
             if (user) {
                 setCurrentUser(true);
                 setUserName(user.displayName);
+                setUserDate(user.metadata.creationTime);
             } else {
                 setCurrentUser(false);
                 setUserName('');
+                setUserDate('');
             }
         });
     }, []);

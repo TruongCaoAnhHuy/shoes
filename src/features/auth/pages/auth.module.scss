@@ -82,6 +82,7 @@
         font-size: 1.69rem;
         font-weight: 600;
         line-height: 2.535rem;
+        user-select: none;
     }
 
     input {
@@ -92,6 +93,20 @@
         font-size: 1.43rem;
     }
 
+}
+
+.password,
+.c_password {
+    position: relative;
+}
+
+.toggle_pass {
+    position: absolute;
+    top: 40%;
+    right: 0;
+    padding: 10px;
+    color: #8d8d8d;
+    cursor: pointer;
 }
 
 .btn_wrapper {
