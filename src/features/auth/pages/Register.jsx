@@ -11,6 +11,8 @@ import Button from '~/components/Button/Button';
 import { Popper as PopperWrapper } from '~/layouts/components/Popper';
 import { BackBtnIcon, FaceBookIcon, GoogleIcon } from '~/components/Icons/Icon';
 import usePasswordToggle from '~/hooks/usePasswordToggle';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -23,6 +25,8 @@ function Register() {
         cPass: '',
         phone: '',
     });
+
+    const [loading, setLoading] = useState(false);
 
     const [errorMsg, setErrorMsg] = useState('');
     const [errorAll, setErrorAll] = useState(false);
@@ -109,6 +113,7 @@ function Register() {
             return;
         }
 
+        setLoading(true);
         setErrorAll(false);
         setErrorName(false);
         setErrorEmail(false);
@@ -119,15 +124,16 @@ function Register() {
 
         createUserWithEmailAndPassword(auth, values.email, values.password)
             .then(async (res) => {
+                setLoading(false);
                 const user = res.user;
                 await updateProfile(user, {
                     displayName: values.name,
                 });
-                alert('Register Successful');
                 navigate('/');
                 window.location.reload();
             })
             .catch((err) => {
+                setLoading(false);
                 console.log(err);
                 setErrorMsg('User name is already!!');
             });
@@ -244,6 +250,9 @@ function Register() {
                     <Link to="/login">Login</Link>
                 </div>
             </PopperWrapper>
+            <div className={`${cx('overlay')} ${loading ? cx('overlay_none') : ''}`}>
+                <FontAwesomeIcon icon={faSpinner} className={cx('overlay_icon')} />
+            </div>
         </div>
     );
 }
