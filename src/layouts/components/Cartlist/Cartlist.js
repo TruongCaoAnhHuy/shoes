@@ -16,7 +16,7 @@ function Cartlist({ className }) {
                 {product.map((product) => (
                     <div className="col l-4" key={product.id}>
                         <div className={cx('product_item')}>
-                            <Link to={`catalog/@${product.pPath}`} className={cx('product_info')}>
+                            <Link to={`@${product.pPath}`} className={cx('product_info')}>
                                 <div className={cx('product_img')}>
                                     <img src={product.image} alt="product" />
                                 </div>

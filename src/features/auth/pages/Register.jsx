@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import classNames from 'classnames/bind';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -13,6 +14,7 @@ import { BackBtnIcon, FaceBookIcon, GoogleIcon } from '~/components/Icons/Icon';
 import usePasswordToggle from '~/hooks/usePasswordToggle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import Modal from '~/components/Modal/Modal';
 
 const cx = classNames.bind(styles);
 
@@ -250,9 +252,9 @@ function Register() {
                     <Link to="/login">Login</Link>
                 </div>
             </PopperWrapper>
-            <div className={`${cx('overlay')} ${loading ? cx('overlay_none') : ''}`}>
+            <Modal className={`${loading ? cx('overlay_none') : ''}`}>
                 <FontAwesomeIcon icon={faSpinner} className={cx('overlay_icon')} />
-            </div>
+            </Modal>
         </div>
     );
 }

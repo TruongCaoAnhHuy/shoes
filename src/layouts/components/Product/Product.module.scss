@@ -9,6 +9,7 @@
 }
 
 .product {
+    position: relative;
     margin-top: 70px;
     margin-bottom: 80px;
 }
@@ -78,4 +79,16 @@
         height: 1px;
         background-color: #8d8d8d;
     }
+}
+
+.overlay_none {
+    display: block !important;
+}
+
+.popper_wrapper {
+    position: absolute;
+    width: 80%;
+    height: 90vh;
+    box-shadow: none;
+    opacity: 1;
 }

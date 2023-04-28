@@ -13,6 +13,7 @@ import { BackBtnIcon, FaceBookIcon, GoogleIcon } from '~/components/Icons/Icon';
 import usePasswordToggle from '~/hooks/usePasswordToggle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import Modal from '~/components/Modal/Modal';
 
 const cx = classNames.bind(styles);
 
@@ -44,8 +45,7 @@ function Login() {
             })
             .catch((err) => {
                 setLoading(false);
-                setErrorMsg('User name is already!!');
-                console.log(err);
+                setErrorMsg(err.message);
             });
     };
 
@@ -108,9 +108,9 @@ function Login() {
                     <Link to="/register">Register</Link>
                 </div>
             </PopperWrapper>
-            <div className={`${cx('overlay')} ${loading ? cx('overlay_none') : ''}`}>
+            <Modal className={`${loading ? cx('overlay_none') : ''}`}>
                 <FontAwesomeIcon icon={faSpinner} className={cx('overlay_icon')} />
-            </div>
+            </Modal>
         </div>
     );
 }

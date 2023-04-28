@@ -5,10 +5,15 @@ import { Popper as PopperWrapper } from '~/layouts/components/Popper';
 import images from '~/assets/image';
 import { DeleteIcon, MinusIcon, PlusIcon } from '~/components/Icons/Icon';
 import { useState } from 'react';
+import { useLayoutEffect } from 'react';
 
 const cx = classNames.bind(styles);
 
 function Cart() {
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0);
+    });
+
     const [quantity, setQuantity] = useState(1);
 
     const handlePlus = () => {
