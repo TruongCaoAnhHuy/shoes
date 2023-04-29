@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import TippyHeadless from '@tippyjs/react/headless';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useContext, useEffect, useRef, useState } from 'react';
 
 import { auth } from '~/firebase';
@@ -140,7 +140,9 @@ function Header() {
                 </div>
             </div>
             <div className={`${cx('logo')} ${isShrink ? cx('logo-shrink') : ''}`}>
-                <img src={images.logo} alt="logo" />
+                <Link to="/">
+                    <img src={images.logo} alt="logo" />
+                </Link>
             </div>
         </header>
     );

@@ -5,10 +5,14 @@ import styles from './Product.module.scss';
 import Button from '~/components/Button/Button';
 import Banner from '../Banner/Banner';
 import { productTrends, productNews, productPopulars } from '~/assets/fakedata/product';
+import { AddCart } from '~/redux/cartSlice';
+
+import { useDispatch } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
 function Product() {
+    const dispatch = useDispatch();
     return (
         <div className={cx('wrapper')}>
             <div className={cx('title')}>
@@ -34,7 +38,9 @@ function Product() {
                                     </div>
                                 </Link>
                                 <div className={cx('product_btn')}>
-                                    <Button primary>Chọn mua</Button>
+                                    <Button primary onClick={() => dispatch(AddCart(productTrend))}>
+                                        Chọn mua
+                                    </Button>
                                 </div>
                             </div>
                         </div>
